@@ -1,0 +1,30 @@
+{
+  "name": "whatsapp-crypto-sender",
+  "version": "1.0.0",
+  "main": "whatsapp-crypto-sender.js",
+  "bin": "whatsapp-crypto-sender.js",
+  "scripts": {
+    "start": "node whatsapp-crypto-sender.js"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.31.0"
+  },
+  "pkg": {
+    "scripts": [
+      "whatsapp-crypto-sender.js"
+    ],
+    "assets": [
+      "contacts.json",
+      "images/**/*",
+      "node_modules/qrcode-terminal/**/*",
+      "node_modules/whatsapp-web.js/**/*"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ],
+    "outputPath": "dist"
+  }
+}
