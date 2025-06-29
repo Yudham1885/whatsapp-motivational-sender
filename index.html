@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Motivational Quote Sender</title>
+  <style>
+    :root {
+      --primary-color: #27ae60;
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: var(--primary-color);
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+
+    ul.features {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      margin: 2rem auto;
+    }
+
+    ul.features li {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    ul.features li::before {
+      content: "✅";
+      margin-right: 10px;
+    }
+
+    .buy-button {
+      margin: 2rem 0;
+    }
+
+    .buy-button a {
+      text-decoration: none;
+    }
+
+    .buy-button button {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .how-it-works {
+      text-align: left;
+      margin-top: 2rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>WhatsApp Daily Motivational Quote Sender</h1>
+    <p>
+      Automate sending daily motivational quotes + images to your WhatsApp contacts or groups.
+    </p>
+
+    <ul class="features">
+      <li>🧠 AI-generated quotes using local LLM (Ollama)</li>
+      <li>🖼️ Sends a different image every day (rotates by date)</li>
+      <li>👥 Send to multiple WhatsApp contacts or groups</li>
+      <li>🔒 No internet needed after setup – runs locally</li>
+      <li>📱 Scan QR once → runs silently every morning</li>
+    </ul>
+
+    <div class="buy-button">
+      <a href="https://gum.co/your-product-link " target="_blank">
+        <button>Buy Now – $19 One-Time</button>
+      </a>
+    </div>
+
+    <div class="how-it-works">
+      <h2>How It Works</h2>
+      <ol>
+        <li>After purchase, download ZIP file with script + instructions</li>
+        <li>Run once and scan WhatsApp Web QR code</li>
+        <li>Edit <code>contacts.json</code> with your recipient IDs</li>
+        <li>Place motivational images in <code>/images</code></li>
+        <li>The app sends messages automatically every morning</li>
+      </ol>
+    </div>
+
+    <footer>
+      Built by Yudham1885 • <a href="mailto:support@example.com">Contact Support</a>
+    </footer>
+  </div>
+</body>
+</html>
