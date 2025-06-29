@@ -1,126 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Motivational Quote Sender</title>
-  <style>
-    :root {
-      --primary-color: #27ae60;
-      --bg-color: #f4f4f4;
-      --text-color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Daily Motivational Quote Sender - Scabiosa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-      text-align: center;
-      padding: 2rem;
-    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
+        /* Animated background particles */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-    h1 {
-      color: var(--primary-color);
-      margin-top: 0;
-    }
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 82, 82, 0.1);
+            border-radius: 50%;
+            animation: float 25s infinite linear;
+        }
 
-    p {
-      font-size: 1.1rem;
-    }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
 
-    ul.features {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      margin: 2rem auto;
-    }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 82, 82, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-    ul.features li {
-      margin: 0.5rem 0;
-      display: flex;
-      align-items: center;
-    }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    ul.features li::before {
-      content: "✅";
-      margin-right: 10px;
-    }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-    .buy-button {
-      margin: 2rem 0;
-    }
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            background: #ff5252;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: white;
+        }
 
-    .buy-button a {
-      text-decoration: none;
-    }
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ff5252;
+        }
 
-    .buy-button button {
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        /* Main Container */
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
 
-    .how-it-works {
-      text-align: left;
-      margin-top: 2rem;
-    }
+        .content-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 82, 82, 0.2);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #888;
-    }
-  </style>
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff5252, #ff8a80);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #ff5252 50%, #ff8a80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* Features Section */
+        .features {
+            margin: 3rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 82, 82, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 82, 82, 0.3);
+            background: rgba(255, 82, 82, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+        }
+
+        .feature-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* Buy Button */
+        .buy-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .buy-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #ff5252, #ff8a80);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 82, 82, 0.3);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255, 82, 82, 0.4);
+        }
+
+        .buy-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .buy-button:hover::before {
+            left: 100%;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            margin-top: 3rem;
+        }
+
+        .how-it-works h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #ff5252;
+            text-align: center;
+        }
+
+        .steps-container {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .step-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 82, 82, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            border-color: rgba(255, 82, 82, 0.3);
+            background: rgba(255, 82, 82, 0.05);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #ff5252, #ff8a80);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            min-width: 30px;
+        }
+
+        .step-content {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .step-content code {
+            background: rgba(255, 82, 82, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #ff8a80;
+            font-family: 'Monaco', monospace;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 82, 82, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        footer a {
+            color: #ff5252;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff8a80;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .content-card {
+                padding: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Scroll animations setup */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>WhatsApp Daily Motivational Quote Sender</h1>
-    <p>
-      Automate sending daily motivational quotes + images to your WhatsApp contacts or groups.
-    </p>
+    <div class="bg-particles"></div>
 
-    <ul class="features">
-      <li>🧠 AI-generated quotes using local LLM (Ollama)</li>
-      <li>🖼️ Sends a different image every day (rotates by date)</li>
-      <li>👥 Send to multiple WhatsApp contacts or groups</li>
-      <li>🔒 No internet needed after setup – runs locally</li>
-      <li>📱 Scan QR once → runs silently every morning</li>
-    </ul>
+    <header>
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo-image">SA</div>
+                <div class="logo-text">Scabiosa Software Training Academy</div>
+            </div>
+        </div>
+    </header>
 
-    <div class="buy-button">
-      <a href="https://gum.co/your-product-link " target="_blank">
-        <button>Buy Now – $19 One-Time</button>
-      </a>
-    </div>
+    <div class="main-container">
+        <div class="content-card">
+            <div class="hero-section">
+                <h1>WhatsApp Daily Motivational Quote Sender</h1>
+                <p>Automate sending daily motivational quotes + images to your WhatsApp contacts or groups with AI-powered content generation.</p>
+            </div>
 
-    <div class="how-it-works">
-      <h2>How It Works</h2>
-      <ol>
-        <li>After purchase, download ZIP file with script + instructions</li>
-        <li>Run once and scan WhatsApp Web QR code</li>
-        <li>Edit <code>contacts.json</code> with your recipient IDs</li>
-        <li>Place motivational images in <code>/images</code></li>
-        <li>The app sends messages automatically every morning</li>
-      </ol>
+            <div class="features">
+                <div class="features-grid">
+                    <div class="feature-item animate-on-scroll">
+                        <div class="feature-icon">🧠</div>
+                        <div class="feature-text">AI-generated quotes using local LLM (Ollama)</div>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <div class="feature-icon">🖼️</div>
+                        <div class="feature-text">Sends a different image every day (rotates by date)</div>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <div class="feature-icon">👥</div>
+                        <div class="feature-text">Send to multiple WhatsApp contacts or groups</div>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-text">No internet needed after setup – runs locally</div>
+                    </div>
+                    <div class="feature-item animate-on-scroll">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-text">Scan QR once → runs silently every morning</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buy-section">
+                <a href="https://yudhamster.gumroad.com/l/gltzf" target="_blank" class="buy-button">
+                    Buy Now – $20 One-Time
+                </a>
+            </div>
+
+            <div class="how-it-works animate-on-scroll">
+                <h2>How It Works</h2>
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">After purchase, download ZIP file with script + instructions</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">Run once and scan WhatsApp Web QR code</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">Edit <code>contacts.json</code> with your recipient IDs</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">Place motivational images in <code>/images</code> folder</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">5</div>
+                        <div class="step-content">The app sends messages automatically every morning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>
-      Built by Yudham1885 • <a href="mailto:support@example.com">Contact Support</a>
+        <p>&copy; Scabiosa 2025 • <a href="mailto:scabiosa.gobi@gmail.com">Contact Support</a></p>
     </footer>
-  </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.querySelector('.bg-particles');
+            const particleCount = 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('animated');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature items with staggered animation
+        document.querySelectorAll('.feature-item').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+            observer.observe(item);
+        });
+
+        // Observe other animated elements
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize particles
+        createParticles();
+
+        // Enhanced hover effects
+        document.querySelectorAll('.feature-item, .step-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Buy button click tracking (you can add analytics here)
+        document.querySelector('.buy-button').addEventListener('click', function() {
+            // Add your analytics tracking code here
+            console.log('Buy button clicked');
+        });
+    </script>
 </body>
 </html>
