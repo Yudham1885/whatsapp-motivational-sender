@@ -1,14 +1,18 @@
-# WhatsApp Daily Crypto Quote Sender
+# WhatsApp Daily Motivational Quote Sender
 
-## How to Use:
-1. Make sure Ollama is running (`ollama run llama3`)
-2. Place your WhatsApp group/contact list in `contacts.json`
-3. Add images to the `images/` folder
-4. Run the script: `node whatsapp-crypto-sender.js`
+A Node.js app that sends daily motivational quotes + images via WhatsApp using local LLM (Ollama).
 
-## Notes:
-- First time only: scan QR code via terminal
-- The script will pick a different image every day
-- Requires internet only for initial QR login
+## Features
 
-Enjoy automating!
+- 🧠 AI-generated quotes using `Llama3` (via Ollama)
+- 🖼️ Sends a different image every day
+- 📬 Supports multiple contacts/groups
+- 🕒 Runs daily at scheduled time
+- 🚫 No OpenAI API key needed
+
+## How to Run
+
+1. Make sure Ollama is running: `ollama run llama3`
+2. Add your contact IDs in `contacts.json`
+3. Place images in `/images`
+4. Run: `node whatsapp-crypto-sender.js`
