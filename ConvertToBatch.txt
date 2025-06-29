@@ -1,0 +1,6 @@
+@echo off
+cd /d "C:\<JavaScript File Location>"
+node <JavaScript File Name>.js
+
+
+Modify the above as per the instruction and save it in .bat format
