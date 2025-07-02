@@ -1,0 +1,14 @@
+# Setup Instructions
+
+1. First install Ollama:
+   https://ollama.ai/download 
+
+2. Then open CMD and run:
+   ollama pull llama3
+
+3. Start Ollama in background:
+   ollama run llama3
+
+4. Double-click whatsapp-crypto-sender.exe
+
+5. Scan QR code once – then app runs silently daily
